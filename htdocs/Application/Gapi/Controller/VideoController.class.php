@@ -28,5 +28,11 @@ class VideoController extends Controller {
 //  	$inresult  = $Data->where(" inid = {$inid}")->min('id');
         $result  = $Data->where("inid = {$inid}")->select();
         $this->ajaxReturn($result);
-    }                     
+    }  
+    public function icontent(){
+    	$Data = M('video');// 实例化Data数据模型
+    	$oid = I('post.oid');
+        $result  = $Data->where("id = {$oid}")->select();
+        $this->ajaxReturn($result);
+    }                         
 }
