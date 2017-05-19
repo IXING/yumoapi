@@ -2,7 +2,7 @@
 namespace Gapi\Controller;
 use Think\Controller;
 class ArticleController extends Controller {
-//  社区文章
+//  社区文章 
     public function index(){
     	$Data = M('article');// 实例化Data数据模型
         $fist = I('post.first');
