@@ -2,7 +2,7 @@
 namespace Gapi\Controller;
 use Think\Controller;
 class BizhiController extends Controller {  
-	//修改php权限
+	//修改php权限 
     public function index(){
     	$Data = M('bizhi');// 实例化Data数据模型
     	$cid = I('post.id');
