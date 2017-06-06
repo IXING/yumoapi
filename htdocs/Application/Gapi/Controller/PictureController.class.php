@@ -4,7 +4,7 @@ use Think\Controller;
 class PictureController extends Controller {
     public function index(){
     	$Data = M('picture');// 实例化Data数据模型
-    	$cid = I('post.id');
+    	$cid = I('get.id');
         $result  = $Data->where(" inid = {$cid} ")->select();
         header('Content-Type:application/json; charset=utf-8'); 
         $this->ajaxReturn($result);

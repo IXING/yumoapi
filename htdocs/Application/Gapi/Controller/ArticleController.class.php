@@ -88,5 +88,93 @@ class ArticleController extends Controller {
         $maxid = I('post.maxid');
         $result  = $Data->where("id > {$maxid} and inid = $inid")->select();
         $this->ajaxReturn($result);
+    } 
+    public function zan(){
+        $Data = M('article');// 实例化Data数据模型
+        $id = I('post.id');
+        // 获取标题 
+        $zan = $Data->where("id = {$id}")->getField('zan');
+        $Data->zan= $zan + 1 ;
+        $Data->where("id = {$id}")->save(); // 根据条件保存修改的数据      
+    }
+    public function submit(){
+        $Data = M('article');// 实例化Data数据模型
+   
+		$inid = I('post.inid');
+		$user_name = I('post.user_name');
+		$user_img = I('post.user_img');
+		$title = I('post.title');
+		$subtitle = I('post.subtitle');
+		$content = I('post.content','',false);
+//		I('post.content','',false);
+		$yimg = I('post.yimg');
+		$yimg2 = I('post.yimg2');
+		$yimg3 = I('post.yimg3');
+		$yimg4 = I('post.yimg4');
+		$time = I('post.time');
+		$type = I('post.type');
+		$dailyid = I('post.dailyid');
+		$browse = 0;
+		$comments = 0;
+		$zan = 0;
+ 
+						//inid
+						//user_name
+						//user_img
+						//title
+						//subtitle
+						//content
+						//yimg
+						//yimg2
+						//yimg3
+						//yimg4
+						//time
+						//type
+						//dailyid
+						//browse
+						//comments
+						//zan		
+		
+		     
+        $Data->inid  =  $inid;
+        $Data->user_name  =  $user_name;
+        $Data->user_img  =  $user_img;
+        $Data->title  =  $title;
+        $Data->subtitle  =  $subtitle;
+        $Data->content  =  $content;
+        $Data->yimg  =  $yimg;
+        $Data->yimg2  =  $yimg2;
+        $Data->yimg3  =  $yimg3;
+        $Data->yimg4  =  $yimg4;
+        $Data->time  =  $time;
+        $Data->type  =  $type;
+        $Data->dailyid  =  $dailyid;
+        $Data->browse  =  $browse;
+        $Data->comments  =  $comments;
+        $Data->zan =  $zan;
+		
+        $Data->add(); 
+
+		//作者作品加一
+        $User = M('user');
+        $article = $User->where("id = {$inid}")->getField('article');
+        $User->article = $article + 1 ;
+    	$User->where("id = {$inid}")->save();  
+    	  
+    	        
+        //每日一练跟帖加一
+        if(empty($dailyid)){
+        	
+        }else{
+	        $Dataw = M('daily');
+	        $comments2 = $Dataw->where("id = {$dailyid}")->getField('comments');
+	        $Dataw->comments = $comments2 + 1 ;
+	    	$Dataw->where("id = {$dailyid}")->save();  	        	
+        }
+
+
+
+
     }                        
 }
+

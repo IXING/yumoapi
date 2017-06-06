@@ -69,6 +69,35 @@ class CommentController extends Controller {
         
         
     }
+    public function add_video_comment(){
+        $Data = M('comment');// 实例化Data数据模型
+		$content_id = I('post.content_id');
+		$user_id = I('post.user_id');
+		$time = I('post.time');
+		$content = I('post.content');
+		$zan = I('post.zan');
+		$type = I('post.type');
+		$user_img = I('post.user_img');
+		$user_name = I('post.user_name');        
+        $Data->content_id  =  $content_id;
+        $Data->user_id  =  $user_id;
+        $Data->time  =  $time;
+        $Data->content  =  $content;
+        $Data->zan  =  $zan;
+        $Data->type  =  $type;
+        $Data->user_img  =  $user_img;
+        $Data->user_name  =  $user_name;
+        $Data->add();
+        
+    	$Dataa = M('video');// 实例化Data数据模型
+    	$comments = $Dataa->where("id = {$content_id}")->getField('comments');
+        $Dataa->comments = $comments + 1 ;
+    	$Dataa->where("id = {$content_id}")->save();        
+        
+        
+        
+        
+    }
     public function newcomment(){
         $Data = M('comment');// 实例化Data数据模型
         $mid = I('post.mid');
