@@ -175,6 +175,19 @@ class ArticleController extends Controller {
 
 
 
-    }                        
+    }  
+//  删除作品                      
+    public function medelet(){
+        $Data = M('article');// 实例化Data数据模型
+		$id = I('post.id');
+		$user_id = I('post.user_id');
+        $Data->where("id = '{$id}' ")->delete();
+
+    	$Dataa = M('user');// 实例化Data数据模型
+    	$article = $Dataa->where("id = {$user_id}")->getField('article');
+        $Dataa->article = $article - 1 ;
+    	$Dataa->where("id = {$user_id}")->save();         
+
+    } 
 }
 
