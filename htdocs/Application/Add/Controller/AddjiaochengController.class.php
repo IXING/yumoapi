@@ -22,6 +22,8 @@ class AddjiaochengController extends Controller {
 		$browse = $_POST['browse'];
 		$comments = $_POST['comments'];
 		$zan = $_POST['zan'];
+		$jc_link = $_POST['jc_link'];
+		$link_name = $_POST['link_name'];
 		
 		$zying = '?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0';
 		$cyimg = $yimg.''.$zying;
@@ -40,6 +42,8 @@ class AddjiaochengController extends Controller {
 		$data['browse'] = $browse;
 		$data['comments'] = $comments;
 		$data['zan'] = $zan;
+		$data['jc_link'] = $jc_link;
+		$data['link_name'] = $link_name;
 	
 
 		$User->add($data);

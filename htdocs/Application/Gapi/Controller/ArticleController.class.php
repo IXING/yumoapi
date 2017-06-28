@@ -7,14 +7,14 @@ class ArticleController extends Controller {
     	$Data = M('article');// 实例化Data数据模型
         $fist = I('post.first');
         $last = I('post.last');
-        $result  = $Data->order('id desc')->limit($fist,$last)->select();
+        $result  = $Data->where("type != '2'")->order('id desc')->limit($fist,$last)->select();
         header('Content-Type:application/json; charset=utf-8'); 
         $this->ajaxReturn($result); 
     }   
     public function updata(){
     	$Data = M('article');// 实例化Data数据模型
         $maxid = I('post.maxid');
-        $result  = $Data->where("id > {$maxid}")->select();
+        $result  = $Data->where("id > {$maxid} and type != '2'")->select();
         $this->ajaxReturn($result);
     } 
     public function olist(){
